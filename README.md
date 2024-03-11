@@ -39,9 +39,5 @@ Este é um simulador MQTT desenvolvido em Go (Golang) para simular a leitura de 
    go run mqtt_subscriber.go
    ```
 
-## Observações:
-- Certifique-se de ter um broker MQTT em execução localmente no endereço e porta padrão (tcp://localhost:1883) para que os programas se conectem corretamente.
-- Os programas são projetados para rodar indefinidamente até receber um sinal de interrupção (Ctrl+C).
-- O código utiliza a biblioteca `rand` para gerar valores aleatórios, simbolizando leituras fictícias do sensor.
-
-Esse simulador é uma ferramenta simples para entender e testar a comunicação MQTT em ambientes locais. Sinta-se à vontade para modificar e expandir conforme necessário para atender aos seus requisitos específicos.
+## Link do video de teste 
+:https://youtu.be/KeCce8bQCmc
