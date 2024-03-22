@@ -1,6 +1,3 @@
-Claro, aqui está um exemplo de arquivo `README.md` para a solução apresentada:
-
-```markdown
 # IoT Simulator
 
 Este é um projeto de simulação de dispositivos IoT utilizando a linguagem Go. Ele inclui testes unitários para garantir a funcionalidade correta dos componentes.

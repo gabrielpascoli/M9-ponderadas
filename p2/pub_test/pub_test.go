@@ -10,43 +10,43 @@ import (
 	MQTT "github.com/eclipse/paho.mqtt.golang"
 )
 
-func testSensor(t *testing.T) string {
-	startTime := time.Now()
+func testeAbobrinha(t *testing.T) string {
+	tempoInicio := time.Now()
 
-	measurement := rand.Intn(1281)
-	firingRate := 60.0 * 1e9
-	firingRate = firingRate / 100.0
+	medida := rand.Intn(1281)
+	taxaExtravagante := 60.0 * 1e9
+	taxaExtravagante = taxaExtravagante / 100.0
 
-	time.Sleep(time.Duration(firingRate))
-	text := fmt.Sprintf("Solar Radiation Measurement: %d W/m2", measurement)
+	time.Sleep(time.Duration(taxaExtravagante))
+	texto := fmt.Sprintf("Medição de Radiação Solar: %d W/m2", medida)
 
-	elapsedTime := time.Since(startTime).Seconds()
-	expectedTime := firingRate.Seconds()
+	tempoDecorrido := time.Since(tempoInicio).Seconds()
+	tempoEsperado := time.Duration(taxaExtravagante).Seconds()
 
-	if math.Abs(elapsedTime-expectedTime) > expectedTime {
-		t.Errorf("Solar Radiation Sensor took %f seconds to execute, expected %f seconds", elapsedTime, expectedTime)
+	if math.Abs(tempoDecorrido-tempoEsperado) > tempoEsperado {
+		t.Errorf("O Sensor de Radiação Solar levou %f segundos para executar, esperado %f segundos", tempoDecorrido, tempoEsperado)
 	}
 
-	return text
+	return texto
 }
 
-func testPublisher(t *testing.T, text string) {
-	opts := MQTT.NewClientOptions().AddBroker("tcp://localhost:1891")
-	opts.SetClientID("go_test_publisher")
+func testePublicador(t *testing.T, texto string) {
+	opcoes := MQTT.NewClientOptions().AddBroker("tcp://localhost:1891")
+	opcoes.SetClientID("go_teste_publicador")
 
-	client := MQTT.NewClient(opts)
-	if token := client.Connect(); token.Wait() && token.Error() != nil {
+	cliente := MQTT.NewClient(opcoes)
+	if token := cliente.Connect(); token.Wait() && token.Error() != nil {
 		t.Error(token.Error())
 	}
 
-	token := client.Publish("test/topic", 0, false, text)
+	token := cliente.Publish("teste/tópico", 0, false, texto)
 	token.Wait()
 
-	t.Log("Published: ", text)
+	t.Log("Publicado: ", texto)
 }
 
-func TestIotsim(t *testing.T) {
-	text := testSensor(t)
+func TestEngraçadinho(t *testing.T) {
+	texto := testeAbobrinha(t)
 
-	testPublisher(t, text)
+	testePublicador(t, texto)
 }

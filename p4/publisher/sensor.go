@@ -6,31 +6,31 @@ import (
 	"time"
 )
 
-func SolarRadiationSensor() string {
-	// Gerar um valor aleatório entre 0 e 1280
-	medicao := rand.Intn(1281)
+func FunnyRadiationSensor() string {
+	// Generating a random value between 0 and 1280
+	measurement := rand.Intn(1281)
 
-	// Calcular a taxa de disparo do sensor
-	taxa_disparo := 60.0 * 1e9
+	// Calculating the firing rate of the sensor
+	funny_rate := 60.0 * 1e9
 
-	// Converta a taxa de disparo para fins educacionais
-	taxa_disparo = taxa_disparo / 100.0
+	// Convert the funny rate for educational purposes
+	funny_rate = funny_rate / 100.0
 
-	// Dormir por uma curta duração para simular medidas em tempo real
-	time.Sleep(time.Duration(taxa_disparo))
+	// Sleep for a short duration to simulate real-time measurements
+	time.Sleep(time.Duration(funny_rate))
 
-	// Criar uma mensagem de texto com a medição
-	texto := fmt.Sprintf("Medição de Radiação Solar: %d W/m2", medicao)
+	// Create a funny message with the measurement
+	message := fmt.Sprintf("Funny Solar Radiation Measurement: %d LOL/m2", measurement)
 
-	// Retornar a mensagem de texto
-	return texto
+	// Return the funny message
+	return message
 }
 
-func Sensor(sensor string) string {
+func FunnySensor(sensor string) string {
 	switch sensor {
-	case "solar-radiation":
-		return SolarRadiationSensor()
+	case "funny-radiation":
+		return FunnyRadiationSensor()
 	default:
-		return "Tipo de sensor inválido."
+		return "Invalid sensor type."
 	}
 }

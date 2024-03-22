@@ -7,34 +7,34 @@ import (
 	MQTT "github.com/eclipse/paho.mqtt.golang"
 )
 
-func TestSubscriber(t *testing.T) {
-	messageReceived := make(chan struct{})
+func TestEsquisito(t *testing.T) {
+	mensagemRecebida := make(chan struct{})
 
-	messagePubHandler := func(client MQTT.Client, msg MQTT.Message) {
-		t.Logf("Received: %s\n", msg.Payload())
-		close(messageReceived)
+	controladorMensagem := func(cliente MQTT.Client, msg MQTT.Message) {
+		t.Logf("Recebido: %s\n", msg.Payload())
+		close(mensagemRecebida)
 	}
 
-	opts := MQTT.NewClientOptions().AddBroker("tcp://localhost:1891")
-	opts.SetClientID("go_test_subscriber")
-	opts.SetDefaultPublishHandler(messagePubHandler)
+	opcoes := MQTT.NewClientOptions().AddBroker("tcp://localhost:1891")
+	opcoes.SetClientID("go_teste_assinante")
+	opcoes.SetDefaultPublishHandler(controladorMensagem)
 
-	client := MQTT.NewClient(opts)
-	if token := client.Connect(); token.Wait() && token.Error() != nil {
+	cliente := MQTT.NewClient(opcoes)
+	if token := cliente.Connect(); token.Wait() && token.Error() != nil {
 		t.Error(token.Error())
 	}
 
-	if token := client.Subscribe("test/topic", 1, nil); token.Wait() && token.Error() != nil {
+	if token := cliente.Subscribe("teste/tópico", 1, nil); token.Wait() && token.Error() != nil {
 		t.Error(token.Error())
 		return
 	}
 
-	t.Log("Subscriber running.")
+	t.Log("Assinante em ação.")
 
 	select {
-	case <-messageReceived:
-		t.Log("Received a message. Test successful!")
+	case <-mensagemRecebida:
+		t.Log("Mensagem recebida. Teste bem sucedido!")
 	case <-time.After(30 * time.Second):
-		t.Error("Timeout reached. No message received.")
+		t.Error("Tempo esgotado. Nenhuma mensagem recebida.")
 	}
 }

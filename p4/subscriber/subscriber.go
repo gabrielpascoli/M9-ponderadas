@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"regexp"
+	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	godotenv "github.com/joho/godotenv"
@@ -25,17 +27,17 @@ func loadEnv() {
 func main() {
 	loadEnv()
 
-	broker := os.Getenv("BROKER_ADDR")
+	broker := os.Getenv("FUNNY_BROKER_ADDR")
 	port := 8883
 
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tls://%s:%d", broker, port))
-	opts.SetClientID("GoSubscriber")
-	opts.SetUsername(os.Getenv("HIVE_USER"))
-	opts.SetPassword(os.Getenv("HIVE_PSWD"))
+	opts.SetClientID("GoHilariousSubscriber")
+	opts.SetUsername(os.Getenv("LOL_USER"))
+	opts.SetPassword(os.Getenv("LOL_PSWD"))
 
 	var messagePubHandler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
-		fmt.Printf("Recebido: %s\n", msg.Payload())
+		fmt.Printf("Received: %s\n", msg.Payload())
 	}
 
 	var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
@@ -55,18 +57,17 @@ func main() {
 		panic(token.Error())
 	}
 
-	// Defina as funções de manipulador de mensagem para os tópicos aos quais você deseja se inscrever
-	topicos := map[string]byte{
-		"sensor/topic": 1, // 1 para QoS 1
-		// Adicione outros tópicos aqui, se necessário
+	// Set message handler functions for the topics you want to subscribe to
+	topics := map[string]byte{
+		"funny/topic": 1, // 1 for QoS 1
+		// Add other topics here if needed
 	}
 
-	if token := client.SubscribeMultiple(topicos, nil); token.Wait() && token.Error() != nil {
+	if token := client.SubscribeMultiple(topics, nil); token.Wait() && token.Error() != nil {
 		fmt.Println(token.Error())
 		return
 	}
 
-	fmt.Println("Subscribed running...")
-	select {} // Bloqueia indefinidamente
-	//client.Disconnect(250)
+	fmt.Println("Hilarity subscribed...")
+	select {} // Blocks indefinitely
 }

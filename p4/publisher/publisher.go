@@ -23,22 +23,22 @@ func loadEnv() {
 	}
 }
 
-// Função de exemplo para obter dados do sensor (substitua isso com sua própria lógica)
-func Sensor(sensorName string) string {
+// Funny function to get sensor data (replace this with your own logic)
+func FunnySensor(sensorName string) string {
 	return fmt.Sprintf("%s: %v", sensorName, time.Now().UnixNano())
 }
 
 func main() {
 	loadEnv()
 
-	broker := os.Getenv("BROKER_ADDR")
+	broker := os.Getenv("FUNNY_BROKER_ADDR")
 	port := 8883
 
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tls://%s:%d", broker, port))
-	opts.SetClientID("GoPublisher")
-	opts.SetUsername(os.Getenv("HIVE_USER"))
-	opts.SetPassword(os.Getenv("HIVE_PSWD"))
+	opts.SetClientID("GoHilariousPublisher")
+	opts.SetUsername(os.Getenv("LOL_USER"))
+	opts.SetPassword(os.Getenv("LOL_PSWD"))
 
 	var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
 		fmt.Println("Connected")
@@ -57,12 +57,10 @@ func main() {
 	}
 
 	for {
-		text := Sensor("solar-radiation")
-		token := client.Publish("sensor/topic", 0, false, text)
+		text := FunnySensor("laughter-meter")
+		token := client.Publish("funny/topic", 0, false, text)
 		token.Wait()
-		fmt.Println("Published: ", text)
+		fmt.Println("Hilarious data published: ", text)
 		time.Sleep(2 * time.Second)
 	}
-
-	//client.Disconnect(250)
 }
