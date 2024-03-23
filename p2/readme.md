@@ -1,4 +1,4 @@
-Claro, aqui está o arquivo README com as variáveis e strings trocadas por palavras engraçadas:
+
 
 ---
 
@@ -38,14 +38,7 @@ O assinante se conecta ao tópico MQTT e recebe os dados de medição engraçado
 go run subscriber.go
 ```
 
-## Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) ou enviar solicitações de pull (pull requests) para melhorar este projeto.
+## Link do vídeo 
 
-## Licença
-
-Este projeto é licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
-
----
-
-Espero que este README atenda às suas expectativas!
+https://youtu.be/fjSUbT1inVg?si=fLzLzp9Y-myTqxJf
