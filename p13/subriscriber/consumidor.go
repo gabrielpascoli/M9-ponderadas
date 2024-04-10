@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	config "iotsimkafka/config"
+	config "thefalloff/config"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -28,7 +28,7 @@ func main() {
 
 	fmt.Println("Wet Dreamz started")
 
-	topic := "dataKAFKA"
+	topic := "qualidadeAr"
 	consumer.SubscribeTopics([]string{topic}, nil)
 
 	for {

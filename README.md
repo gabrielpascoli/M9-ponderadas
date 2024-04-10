@@ -5,15 +5,18 @@ Este repositório contém os arquivos das provas e ponderadas do Módulo 9.
 ## Conteúdo do Repositório
 
 ### Ponderadas
+(
+- [Ponderada 1] (https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p1)
+- [Ponderada 2](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p2)
 
-- [Ponderada 1](https://github.com/gabrielpascoli/M9-ponderadas/blob/main/p1/P1.pdf)
-- [Ponderada 2](https://github.com/gabrielpascoli/M9-ponderadas/blob/main/p2/P2.pdf)
+- [ponderada 3 Simulação de Ataques usando MQTT](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p3)
 
-- [Ponderada 4](https://github.com/gabrielpascoli/M9-ponderadas/blob/main/p4/P4.pdf)
+- [Ponderada 4](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p4)
+- [ponderada 5 Avaliação de Segurança do Projeto](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p5)
 
-- [Ponderada 6](https://github.com/gabrielpascoli/M9-ponderadas)
+- [Ponderada 6](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p6)
 - 
-- [Ponderada 13](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p13/P13.pdf)
+- [Ponderada 13](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/p13)
 
 ### Provas do Módulo 9
 

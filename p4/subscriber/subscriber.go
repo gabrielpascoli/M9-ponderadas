@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"regexp"
-	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	godotenv "github.com/joho/godotenv"
 )
 
 func loadEnv() {
-	projectDirName := "pond4"
+	projectDirName := "p4"
 	re := regexp.MustCompile(`^(.*` + projectDirName + `)`)
 	cwd, _ := os.Getwd()
 	rootPath := re.Find([]byte(cwd))

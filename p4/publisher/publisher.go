@@ -11,7 +11,7 @@ import (
 )
 
 func loadEnv() {
-	projectDirName := "pond4"
+	projectDirName := "p4"
 	re := regexp.MustCompile(`^(.*` + projectDirName + `)`)
 	cwd, _ := os.Getwd()
 	rootPath := re.Find([]byte(cwd))
@@ -21,11 +21,6 @@ func loadEnv() {
 	if err != nil {
 		fmt.Printf("Error loading .env file: %s", err)
 	}
-}
-
-// Funny function to get sensor data (replace this with your own logic)
-func FunnySensor(sensorName string) string {
-	return fmt.Sprintf("%s: %v", sensorName, time.Now().UnixNano())
 }
 
 func main() {
@@ -57,7 +52,7 @@ func main() {
 	}
 
 	for {
-		text := FunnySensor("laughter-meter")
+		text := FunnySensor("funny-radiation")
 		token := client.Publish("funny/topic", 0, false, text)
 		token.Wait()
 		fmt.Println("Hilarious data published: ", text)

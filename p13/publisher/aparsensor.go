@@ -11,7 +11,7 @@ func ApparentlySolarRadiation() string {
 	firing_rate := 60.0 * 1e9
 	firing_rate = firing_rate/100.0
 	time.Sleep(time.Duration(firing_rate))
-	text := fmt.Sprintf(`{"sensor": "solar-radiation", "value": "%d"}`, measurement)
+	text := fmt.Sprintf(`{"sensor": "thefalloff", "value": "%d"}`, measurement)
 	return text
 }
 

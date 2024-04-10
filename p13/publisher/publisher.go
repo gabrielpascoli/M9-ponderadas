@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	config "iotsimkafka/config"
+	config "thefalloff/config"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
@@ -18,7 +18,7 @@ func main() {
 
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tls://%s:%d", broker, port))
-	opts.SetClientID("GoPublisher")
+	opts.SetClientID("AMKS")
 	opts.SetUsername(os.Getenv("HIVE_USER"))
 	opts.SetPassword(os.Getenv("HIVE_PSWD"))
 	
@@ -40,7 +40,7 @@ func main() {
 
 	for {
 		text := Apparently("solar-radiation")
-		token := client.Publish("dataMQTT", 0, false, text)
+		token := client.Publish("jacola", 0, false, text)
 		token.Wait()
 		fmt.Println("Published: ", text)
 		time.Sleep(5 * time.Second)

@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"testing"
 
-	config "iotsimkafka/config"
+	config "thefalloff/config"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-func main() {
+func TestKafka(t *testing.T) {
 	config.LoadEnv()
 
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{

@@ -1,45 +1,60 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
-	config "iotsimkafka/config"
+	config "thefalloff/config"
 
-	"github.com/confluentinc/confluent-kafka-go/kafka"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func main() {
+func ConnectMongoDB() *mongo.Client {
 	config.LoadEnv()
 
-	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": os.Getenv("BOOTSTRAP_SERVERS"),
-		"group.id":          os.Getenv("CLUSTER_ID"),
-		"auto.offset.reset": "earliest",
-		"security.protocol": "SASL_SSL",
-		"sasl.mechanisms":   "PLAIN",
-		"sasl.username":     os.Getenv("API_KEY"),
-		"sasl.password":     os.Getenv("API_SECRET"),
-	})
+	// Get the MongoDB connection string
+	mongodb := os.Getenv("MONGODB")
+
+	// Use the SetServerAPIOptions() method to set the version of the Stable API on the client
+	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
+	opts := options.Client().ApplyURI(mongodb).SetServerAPIOptions(serverAPI)
+
+	// Create a new client and connect to the server
+	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {
 		panic(err)
 	}
-	defer consumer.Close()
 
-	fmt.Println("Wet Dreamz started")
+	return client
+}
 
-	topic := "dataKAFKA"
-	consumer.SubscribeTopics([]string{topic}, nil)
+type Sensor struct {
+	Sensor string `json:"sensor"`
+	Value  string `json:"value"`
+}
 
-	for {
-		msg, err := consumer.ReadMessage(-1)
-		if msg != nil && err == nil {
-			msgValue := string(msg.Value)
-			fmt.Printf("Received message: %s\n", msgValue)
-			LightsPlease(msgValue)
-		} else if err != nil {
-			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
-			break
-		}
+func LightsPlease(data string) {
+	client := ConnectMongoDB()
+
+	defer client.Disconnect(context.TODO())
+
+	var sensor Sensor
+
+	// Access a MongoDB collection through a database
+	err := bson.UnmarshalExtJSON([]byte(data), true, &sensor)
+	if err != nil {
+		panic(err)
 	}
+
+	collection := client.Database("jacole").Collection(sensor.Sensor)
+
+	// Insert a single document
+	result, err := collection.InsertOne(context.TODO(), sensor)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Inserted a single document: %v\n", result.InsertedID)
 }

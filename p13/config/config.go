@@ -9,7 +9,7 @@ import (
 )
 
 func LoadEnv() {
-	projectDirName := "pond13"
+	projectDirName := "p13"
 	re := regexp.MustCompile(`^(.*` + projectDirName + `)`)
 	cwd, _ := os.Getwd()
 	rootPath := re.Find([]byte(cwd))
