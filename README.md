@@ -21,7 +21,7 @@ Este repositório contém os arquivos das provas e ponderadas do Módulo 9.
 ### Provas do Módulo 9
 
 - [Prova 1](https://github.com/gabrielpascoli/M9-ponderadas/blob/main/provas%20do%20modulo%2009/Prova_1.pdf)
-- [Prova 2](https://github.com/gabrielpascoli/M9-ponderadas/blob/main/provas%20do%20modulo%2009/Prova_2.pdf)
+- [Prova 2](https://github.com/gabrielpascoli/M9-ponderadas/tree/main/provas%20do%20modulo%2009/prova%202)
 
 ## Descrição
 
