@@ -34,7 +34,7 @@ sudo docker run -d -p 3000:3000 -v ~/caminho-para-o-repositorio/M9-ponderadas/p6
 5. Ao conectar o banco de dados no Metabase, utilize o seguinte caminho:
 
 ```plaintext
-database/database.db
+database/data.db
 ```
 
 6. Em um dos terminais, execute os seguintes comandos para iniciar a API:
