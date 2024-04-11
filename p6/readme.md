@@ -1,61 +1,63 @@
+# Ponderada 6 - Metabase
 
----
+A ponderada opera da seguinte maneira: o HiveMQ atua como broker, facilitando a conexão entre o subscriber e o publisher. O publisher envia as informações e o subscriber as recebe. A API captura os dados do subscriber e os encaminha para o banco de dados. O Metabase está conectado diretamente ao banco, permitindo atualizações em tempo real.
 
-# iotsimMeta
+## Execução do Projeto
 
-iotsimMeta é uma atualização do iotsimHive, adicionando armazenamento em um banco de dados SQLite e visualização em um painel através do Metabase.
+Para executar o projeto, siga estes passos:
 
-## Visualizando e armazenando com iotsimMeta!
+1. Clone o projeto:
 
-Para armazenar os dados do simulador de sensor de radiação solar e visualizá-los em um painel, siga o tutorial do diretório `pond6`.
+bash
+git clone https://github.com/gabrielpascoli/M9-ponderadas.git
 
-### Configurando as variáveis de ambiente
 
-Primeiramente, para acessar o binário do Go, execute o seguinte comando:
-```
+2. Abra 4 terminais dentro do projeto. Em cada terminal, execute o seguinte comando para acessar o ambiente:
+
+bash
+cd ambiente_clonado/M9-ponderadas/p6
+
+
+3. Execute o seguinte comando em 3 terminais para acessar o binário do Go:
+
+bash
 source .bashrc
-```
 
-Em seguida, crie um arquivo `.env` com suas credenciais:
-```
-BROKER_ADDR="379d67d20bd940f2921461046040735b.s1.eu.hivemq.cloud"
-HIVE_USER=""
-HIVE_PSWD=""
-```
 
-### API para gerenciamento de dados
+4. Para visualizar o banco de dados em funcionamento, execute o seguinte comando em um terminal que não executou o comando anterior, para acessar o Metabase através de um container Docker. Siga os passos fornecidos pelo Metabase.
 
-Para armazenar os dados no banco de dados, é necessário ativar uma API, então execute o seguinte comando no diretório `/api`:
-```
+bash
+cd database
+sudo docker run -d -p 3000:3000 -v ~/caminho-para-o-repositorio/M9-ponderadas/p6/database:/database --name metabase metabase/metabase
+
+
+5. Ao conectar o banco de dados no Metabase, utilize o seguinte caminho:
+
+plaintext
+database/database.db
+
+
+6. Em um dos terminais, execute os seguintes comandos para iniciar a API:
+
+bash
+cd api
 go run .
-```
 
-### Publicando e Subscrevendo no HiveMQ
 
-Para enviar e receber dados para o cluster do HiveMQ, execute o seguinte comando nos diretórios `/publisher` e `/subscriber`:
-```
+7. Em outro terminal, execute os seguintes comandos para iniciar o publisher:
+
+bash
+cd publisher
 go run .
-```
 
-### Visualizando o Painel
 
-Para a visualização dos dados, execute o seguinte comando:
-```
-sudo docker run -d -p 3000:3000 \
--v ~/Modulo9/src/pond6/metabase.db:/metabase.db \
--v ~/Modulo9/src/pond6/database:/database \
---name metabase metabase/metabase
-```
+8. No terminal restante, execute o seguinte comando para iniciar o subscriber:
 
-No Metabase, insira suas informações e conecte-se ao banco de dados com o seguinte comando:
-```
-database/data.db
-```
+bash
+cd subscriber
+go run .
 
-## iotsimMeta em Ação!
 
-Você pode ver o iotsimMeta em ação no seguinte vídeo:
+## Funcionamento Comprovado
 
-[Assistir ao Vídeo](https://drive.google.com/file/d/1j1XDhm1z2UYCpQuphqfuQU5veI6NnfUh/view?usp=sharing)
-
----
+Veja a ponderada em funcionamento corretamente através [deste link](POR O LINK AQUI).
