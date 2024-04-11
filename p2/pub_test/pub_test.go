@@ -50,3 +50,4 @@ func TestEngraçadinho(t *testing.T) {
 
 	testePublicador(t, texto)
 }
+caculateaveragep

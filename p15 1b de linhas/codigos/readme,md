@@ -1,0 +1,43 @@
+# README
+
+## Ponderada 7 - Desafio de 1 Bilhão de Linhas
+
+Para começar, é necessário instalar as dependências do projeto. Certifique-se de ter o Python 3 instalado em seu ambiente. Você pode instalar as dependências executando o seguinte comando no terminal:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+### Script para Criar o Arquivo de Medições
+
+O script `createMeasurements.py` é responsável por gerar o arquivo com 1 bilhão de linhas de medições de temperatura. Ele utiliza uma classe chamada `CreateMeasurement` para esse fim.
+
+Para executar o script e criar o arquivo de medições, basta executar o seguinte comando:
+
+```bash
+python3 createMeasurements.py
+```
+
+Este script permite que você especifique o nome do arquivo de saída e o número total de registros a serem gerados como argumentos de linha de comando. Por padrão, ele criará um arquivo chamado `measurements.txt` com 1 bilhão de registros.
+
+### Script para Calcular a Média das Medições
+
+O script `calculateAveragePolars.py` calcula estatísticas resumidas das medições de temperatura, como mínimo, média e máximo, agrupadas por estação.
+
+Para executar o script de cálculo das médias, utilize o seguinte comando:
+
+```bash
+python3 calculateAveragePolars.py
+```
+
+Este script lê o arquivo de medições gerado pelo script anterior e imprime as estatísticas resumidas para cada estação.
+
+### Detalhes dos Scripts
+
+- **createMeasurements.py**: Este script utiliza a biblioteca `polars` para gerar dados de temperatura com base em médias predefinidas para diferentes estações. Ele gera os dados em lotes e os escreve em um arquivo CSV.
+
+- **calculateAveragePolars.py**: Este script lê o arquivo de medições gerado pelo script anterior e calcula estatísticas resumidas das medições de temperatura para cada estação usando a biblioteca `polars`. Ele imprime os resultados na saída padrão.
+
+## Detalhes Técnicos
+
+Os scripts foram desenvolvidos em Python 3 e utilizam as bibliotecas `polars`, `numpy` e `tqdm`. O script `createMeasurements.py` pode levar algum tempo para ser executado, pois gera um grande volume de dados. Por outro lado, o script `calculateAveragePolars.py` processa esses dados de forma eficiente para calcular as estatísticas resumidas.
