@@ -1,22 +1,26 @@
-otsimMeta
-IotsimMeta é uma atualização de IotsimHive, adicionando armazenamento em um banco de dados SQlite e visualização em uma dashboard pelo Metabase.
+# Ponderada 6 - Metabase
 
-Visualizando e armazenando com IotsimMeta!
-Para armazenar os dados do simulador de sensor de radiação solar e visualizá-los em uma dashboard basta seguir o tutorial a partir do diretório pond6.
+A ponderada opera da seguinte maneira: o HiveMQ atua como broker, facilitando a conexão entre o subscriber e o publisher. O publisher envia as informações e o subscriber as recebe. A API captura os dados do subscriber e os encaminha para o banco de dados. O Metabase está conectado diretamente ao banco, permitindo atualizações em tempo real.
 
-Configuração das variaveis de ambiente
-Primeiramente, para acessar o binário do Go, rode o seguinte comando:
+## Execução do Projeto
 
-source .bashrc# IotsimMeta
-IotsimMeta é uma atualização de
-[IotsimHive](https://github.com/IgorSFG/Modulo9/tree/main/src/pond4),
-adicionando armazenamento em um banco de dados SQlite e visualização em uma dashboard pelo Metabase.
+Para executar o projeto, siga estes passos:
 
-## Visualizando e armazenando com IotsimMeta!
-Para armazenar os dados do simulador de sensor de radiação solar e visualizá-los em uma dashboard basta seguir o tutorial a partir do diretório `pond6`.
+1. Clone o projeto:
 
-### Configuração das variaveis de ambiente
-Primeiramente, para acessar o binário do Go, rode o seguinte comando:
+```bash
+git clone https://github.com/gabrielpascoli/M9-ponderadas.git
+```
+
+2. Abra 4 terminais dentro do projeto. Em cada terminal, execute o seguinte comando para acessar o ambiente:
+
+```bash
+cd ambiente_clonado/M9-ponderadas/p6
+```
+
+3. Execute o seguinte comando em 3 terminais para acessar o binário do Go:
+
+```bash
 source .bashrc
 ```
 
@@ -38,32 +42,12 @@ database/database.db
 ```bash
 cd api
 go run .
+```
 
+7. Em outro terminal, execute os seguintes comandos para iniciar o publisher:
 
-### Visualizando a Dashboard
-Para a visualização dos dados, rode o seguinte comando:
-sudo docker run -d -p 3000:3000
--v ~/Modulo9/src/pond6/metabase.db:/metabase.db
--v ~/Modulo9/src/pond6/database:/database
---name metabase metabase/metabase
-
-
-No metabase, insira suas informção e conecte-se ao banco de dados com o seguinte comando:
-database/data.db
-
-
-## IotsimMeta em Ação!
-Você pode conferir o funcionamento de IotsimMeta no vídeo a seguir:
-
-https://drive.google.com/file/d/1j1XDhm1z2UYCpQuphqfuQU5veI6NnfUh/view?usp=sharing
-Em seguida, crie um arquivo .env com as suas credenciais:
-
-BROKER_ADDR = "379d67d20bd940f2921461046040735b.s1.eu.hivemq.cloud"
-HIVE_USER = "<seu-nome-de-usuario-aqui>"
-HIVE_PSWD = "<sua-senha-cadastrada-aqui>"
-API para gerenciamento de dados
-Para que os dados sejam armazenados no banco de dados, é necessário ativar um api, então rode o seguinte comando no diretório /api:
-
+```bash
+cd publisher
 go run .
 ```
 
@@ -72,15 +56,8 @@ go run .
 ```bash
 cd subscriber
 go run .
-Visualizando a Dashboard
-Para a visualização dos dados, rode o seguinte comando:
+```
 
-sudo docker run -d -p 3000:3000 \
--v ~<caminho-absoluto>/Modulo9/src/pond6/metabase.db:/metabase.db \
--v ~<caminho-absoluto>/Modulo9/src/pond6/database:/database \
---name metabase metabase/metabase
-No metabase, insira suas informção e conecte-se ao banco de dados com o seguinte comando:
+## Funcionamento Comprovado
 
-database/data.db
-IotsimMeta em Ação!
-Você pode conferir o funcionamento de IotsimMeta no vídeo a seguir:
+Veja a ponderada em funcionamento corretamente através [deste link](POR O LINK AQUI).
