@@ -1,16 +1,19 @@
 package main
 
 import (
-	"os"
 	"fmt"
-	"time"
+	"os"
 	"regexp"
+	"time"
+
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	godotenv "github.com/joho/godotenv"
 )
 
 func loadEnv() {
-	projectDirName := "pond6"
+	p6
+	p6
+	projectDirName := "p6"
 	re := regexp.MustCompile(`^(.*` + projectDirName + `)`)
 	cwd, _ := os.Getwd()
 	rootPath := re.Find([]byte(cwd))
@@ -37,7 +40,7 @@ func main() {
 	var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
 		fmt.Println("Connected")
 	}
-	
+
 	var connectLostHandler mqtt.ConnectionLostHandler = func(client mqtt.Client, err error) {
 		fmt.Printf("Connection lost: %v", err)
 	}
