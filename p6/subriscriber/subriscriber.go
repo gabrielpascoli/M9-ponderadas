@@ -12,7 +12,7 @@ import (
 )
 
 func loadEnv() {
-	projectDirName := "p6
+	p6 := "p6
 	re := regexp.MustCompile(`^(.*` + projectDirName + `)`)
 	cwd, _ := os.Getwd()
 	rootPath := re.Find([]byte(cwd))
